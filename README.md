@@ -10,6 +10,10 @@ TodoList is a React Native application designed to help you manage your daily ta
 - **Status Checkbox**: Mark tasks as complete or incomplete using the status checkbox.
 - **Delete Todo**: Remove tasks effortlessly with the delete button.
 
+![todo-home](https://github.com/user-attachments/assets/4bd9afa8-c16f-4409-83b4-a3fa94148a02)
+
+![addTodo](https://github.com/user-attachments/assets/bf46bf90-41f0-4cef-bbd6-3410df869eb8)
+
 ## Getting Started
 
 To get started with TodoList, follow these steps:
