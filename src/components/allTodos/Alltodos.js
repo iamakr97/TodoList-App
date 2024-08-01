@@ -92,12 +92,12 @@ const Alltodos = ({ navigation }) => {
                   </View>
                 </View>
                 <View style={AlltodosStyle.buttonContainer}>
-                  <TouchableOpacity
+                  {/* <TouchableOpacity
                     style={AlltodosStyle.editButton}
                     onPress={() => handleEdit(index)}
                   >
                     <Text style={AlltodosStyle.buttonText}>Edit</Text>
-                  </TouchableOpacity>
+                  </TouchableOpacity> */}
                   <TouchableOpacity
                     style={AlltodosStyle.deleteButton}
                     onPress={() => handleDelete(index)}
