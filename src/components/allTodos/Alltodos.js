@@ -1,57 +1,57 @@
 import { View, Text, FlatList, TouchableOpacity, Alert } from 'react-native';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import CheckBox from '@react-native-community/checkbox'; // Import Checkbox
+import CheckBox from '@react-native-community/checkbox';
 import AlltodosStyle from './AlltodosStyle';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTodos, deleteTodo } from '../../redux/slices/todoSlice';
 
-const Alltodos = ({ navigation }) => {
-  const [allTodo, setAllTodo] = useState([]);
+const Alltodos = () => {
+  const dispatch = useDispatch();
+  let todos = useSelector(store => store.todos); // Access todos directly from Redux store
 
   // Fetch all todos from AsyncStorage
   const fetchTodos = async () => {
     try {
-      const todos = await AsyncStorage.getItem('_alltodos');
-      if (todos !== null) {
-        setAllTodo(JSON.parse(todos));
+      const allTodos = await AsyncStorage.getItem('_alltodos');
+      if (allTodos !== null) {
+        dispatch(setTodos(JSON.parse(allTodos)));
       }
     } catch (error) {
-      console.error(error);
+      console.error('Error fetching todos:', error);
     }
   };
 
   // Delete a todo
-  const deleteTodo = async (index) => {
+  const deleteOneTodo = async (index) => {
     try {
-      const todos = await AsyncStorage.getItem('_alltodos');
-      const todosArray = todos ? JSON.parse(todos) : [];
+      const allTodos = await AsyncStorage.getItem('_alltodos');
+      const todosArray = allTodos ? JSON.parse(allTodos) : [];
       todosArray.splice(index, 1);
       await AsyncStorage.setItem('_alltodos', JSON.stringify(todosArray));
-      setAllTodo(todosArray);
+      dispatch(deleteTodo(index));
     } catch (error) {
-      console.error(error);
+      console.error('Error deleting todo:', error);
     }
   };
 
   // Toggle todo status
   const toggleTodoStatus = async (index) => {
     try {
-      const updatedTodos = [...allTodo];
-      updatedTodos[index].status = !updatedTodos[index].status;
+      const updatedTodos = todos.map((todo, i) =>
+        i === index ? { ...todo, status: !todo.status } : todo
+      );
       await AsyncStorage.setItem('_alltodos', JSON.stringify(updatedTodos));
-      setAllTodo(updatedTodos);
+      dispatch(setTodos(updatedTodos));
+      
     } catch (error) {
-      console.error(error);
+      console.error('Error toggling todo status:', error);
     }
   };
 
   useEffect(() => {
     fetchTodos();
   }, []);
-
-  const handleEdit = (index) => {
-    // Implement your edit handler
-    navigation.navigate('EditTodo', { index });
-  };
 
   const handleDelete = (index) => {
     Alert.alert(
@@ -62,9 +62,9 @@ const Alltodos = ({ navigation }) => {
           text: "Cancel",
           style: "cancel"
         },
-        { 
-          text: "Delete", 
-          onPress: () => deleteTodo(index) 
+        {
+          text: "Delete",
+          onPress: () => deleteOneTodo(index)
         }
       ]
     );
@@ -73,11 +73,11 @@ const Alltodos = ({ navigation }) => {
   return (
     <View style={AlltodosStyle.container}>
       <Text style={AlltodosStyle.header}>All Todos</Text>
-      
+
       <View style={AlltodosStyle.listContainer}>
-        {allTodo && allTodo.length > 0 ? (
+        {todos && todos.length > 0 ? (
           <FlatList
-            data={allTodo}
+            data={todos}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({ item, index }) => (
               <View style={AlltodosStyle.todoItem}>
@@ -92,12 +92,6 @@ const Alltodos = ({ navigation }) => {
                   </View>
                 </View>
                 <View style={AlltodosStyle.buttonContainer}>
-                  {/* <TouchableOpacity
-                    style={AlltodosStyle.editButton}
-                    onPress={() => handleEdit(index)}
-                  >
-                    <Text style={AlltodosStyle.buttonText}>Edit</Text>
-                  </TouchableOpacity> */}
                   <TouchableOpacity
                     style={AlltodosStyle.deleteButton}
                     onPress={() => handleDelete(index)}

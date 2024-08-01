@@ -4,8 +4,11 @@ import { StyleSheet } from 'react-native';
 const AlltodosStyle = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    padding: 16,
+    backgroundColor: 'white',
+    paddingBottom: 72,
+    paddingTop: 8,
+    paddingLeft: 8,
+    paddingRight: 8
   },
   header: {
     fontSize: 24,
@@ -68,6 +71,10 @@ const AlltodosStyle = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
   },
+  statusCheckbox: {
+    backgroundColor: 'transparent',
+    
+  }
 });
 
 export default AlltodosStyle;

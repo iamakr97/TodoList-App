@@ -17,7 +17,7 @@ export default AddTodoModalStyle = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#ff8856', // App theme color
+    color: '#ff8856',
   },
   labelText: {
     fontSize: 16,
@@ -31,10 +31,12 @@ export default AddTodoModalStyle = StyleSheet.create({
     padding: 10,
     marginBottom: 15,
     fontSize: 16,
+    color: 'black'
   },
   descriptionField: {
     height: 80,
     textAlignVertical: 'top',
+    color: 'black'
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -48,7 +50,7 @@ export default AddTodoModalStyle = StyleSheet.create({
     alignItems: 'center',
   },
   addButton: {
-    backgroundColor: '#ff8856', // App theme color
+    backgroundColor: '#ff8856',
     padding: 10,
     borderRadius: 5,
     width: '45%',

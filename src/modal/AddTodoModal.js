@@ -2,8 +2,11 @@ import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AddTodoModalStyle from './AddTodoModalStyle';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTodo } from '../redux/slices/todoSlice';
 
 const AddTodoModal = ({ addTodoModal, setAddTodoModal }) => {
+  const dispatch = useDispatch();
   const [validTodo, setValidTodo] = useState(false);
   const [newTodo, setNewTodo] = useState({
     title: '',
@@ -35,7 +38,7 @@ const AddTodoModal = ({ addTodoModal, setAddTodoModal }) => {
       todosArray.push(newTodo);
 
       await AsyncStorage.setItem('_alltodos', JSON.stringify(todosArray));
-
+      dispatch(addTodo(newTodo));
       setNewTodo({
         title: '',
         description: '',
