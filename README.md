@@ -1,7 +1,11 @@
 # TodoList
-**App Link** - https://drive.google.com/file/d/1C9gI82JET4rVeRYIo2-kB5e3eNw51-_j/view?usp=sharing
+
+**App Link** - [TodoList APK](https://drive.google.com/file/d/1C9gI82JET4rVeRYIo2-kB5e3eNw51-_j/view?usp=sharing)
 
 TodoList is a React Native application designed to help you manage your daily tasks with a clean and intuitive interface. This app offers a simple and efficient way to keep track of your todos without requiring login or sign-in.
+
+![1 (2)](https://github.com/user-attachments/assets/1a0c6d8c-a21b-4cc9-9c3e-541907281ba8)
+
 
 ## Features
 
@@ -11,20 +15,45 @@ TodoList is a React Native application designed to help you manage your daily ta
 - **Status Checkbox**: Mark tasks as complete or incomplete using the status checkbox.
 - **Delete Todo**: Remove tasks effortlessly with the delete button.
 
-![todo-home](https://github.com/user-attachments/assets/4bd9afa8-c16f-4409-83b4-a3fa94148a02)
-
-![addTodo](https://github.com/user-attachments/assets/bf46bf90-41f0-4cef-bbd6-3410df869eb8)
 
 ## Getting Started
 
 To get started with TodoList, follow these steps:
 
-1. **Clone the Repository**:
+ **Clone the Repository**:
    ```bash
    git clone https://github.com/your-username/TodoList.git
-1. **Run Following Command in project dir**:
-   ```bash
-   npm install
-   npx react-native run-android
-  
-   
+   ```
+- Install the necessary dependencies:
+
+   - Run the React Native app:
+
+      ```bash
+      npx react-native run-android
+      # or
+      npx react-native run-ios
+      ```
+
+### API Testing
+
+You can test the backend API using Postman or any other API testing too
+
+## Usage
+
+- Once the app is running, you can create an account or log in.
+- Add, view, and manage your notes from the home screen.
+- For private notes, use mobile password or face scan to view the content.
+
+## Contribution
+
+We welcome contributions! If you want to contribute to this project:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch and create a pull request.
+
+
+## Acknowledgements
+
+Thanks to all contributors and the open-source community for their valuable input and suggestions.
